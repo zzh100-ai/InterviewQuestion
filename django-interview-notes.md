@@ -1,7 +1,6 @@
-
 # Django 面试题整理（综合版）
 
-> 整理时间：2026-04-29 | 来源：知乎、CSDN、Stack Overflow、官方文档等
+>整理时间：2026-04-29 | 来源：知乎、CSDN、Stack Overflow、官方文档等
 
 ---
 
@@ -44,14 +43,15 @@ graph TD
 
 Django 采用 MTV（Model-Template-View）模式：
 
-- **Model（模型）**：负责数据层，处理数据库交互、数据验证
-- **Template（模板）**：负责表现层，定义 HTML 展示逻辑
-- **View（视图）**：负责业务逻辑层，接收请求、处理数据、返回响应
+* **Model（模型）**：负责数据层，处理数据库交互、数据验证
+* **Template（模板）**：负责表现层，定义 HTML 展示逻辑
+* **View（视图）**：负责业务逻辑层，接收请求、处理数据、返回响应
 
 与 MVC 的对应关系：
-- Django 的 Model ≈ MVC 的 Model
-- Django 的 Template ≈ MVC 的 View
-- Django 的 View ≈ MVC 的 Controller
+
+* Django 的 Model ≈ MVC 的 Model
+* Django 的 Template ≈ MVC 的 View
+* Django 的 View ≈ MVC 的 Controller
 
 ### Q2: Django 的请求生命周期是怎样的？
 
@@ -120,11 +120,12 @@ graph LR
 执行顺序：请求从 MIDDLEWARE[0] 到 MIDDLEWARE[n] 依次处理，进入视图；响应则从 MIDDLEWARE[n] 到 MIDDLEWARE[0] 反向返回（洋葱模型）。
 
 每个中间件可以定义的方法：
-- `process_request(request)` — 请求阶段
-- `process_view(request, view_func, view_args, view_kwargs)` — 视图调用前
-- `process_exception(request, exception)` — 视图抛出异常时
-- `process_template_response(request, response)` — 模板渲染后
-- `process_response(request, response)` — 响应阶段
+
+* `process_request(request)` — 请求阶段
+* `process_view(request, view_func, view_args, view_kwargs)` — 视图调用前
+* `process_exception(request, exception)` — 视图抛出异常时
+* `process_template_response(request, response)` — 模板渲染后
+* `process_response(request, response)` — 响应阶段
 
 ### Q4: Django 项目目录结构中各文件的作用？
 
@@ -343,8 +344,8 @@ class PublishedBook(Book):
 
 ### Q15: `only()` 和 `defer()` 的区别？
 
-- `only()`：只加载指定字段
-- `defer()`：延迟加载指定字段（其他字段立即加载）
+* `only()`：只加载指定字段
+* `defer()`：延迟加载指定字段（其他字段立即加载）
 
 ```python
 # 只查询 title 和 author_id
@@ -396,7 +397,8 @@ class BookListView(ListView):
 ### Q18: Django 模板中常用标签和过滤器有哪些？
 
 **过滤器：**
-```
+
+```text
 {{ value|length }}         # 长度
 {{ value|date:"Y-m-d" }}   # 日期格式化
 {{ value|default:"N/A" }}  # 默认值
@@ -405,7 +407,8 @@ class BookListView(ListView):
 ```
 
 **标签：**
-```
+
+```text
 {% if %}...{% endif %}
 {% for %}...{% endfor %}
 {% block %}...{% endblock %}
@@ -475,11 +478,12 @@ class SimpleMiddleware:
 信号是一种观察者模式的实现，允许解耦的应用在特定事件发生时得到通知。
 
 常用信号：
-- `pre_save` / `post_save` — 模型保存前/后
-- `pre_delete` / `post_delete` — 模型删除前/后
-- `m2m_changed` — 多对多关系变化
-- `request_started` / `request_finished` — 请求开始/结束
-- `user_logged_in` / `user_logged_out` — 用户登录/登出
+
+* `pre_save` / `post_save` — 模型保存前/后
+* `pre_delete` / `post_delete` — 模型删除前/后
+* `m2m_changed` — 多对多关系变化
+* `request_started` / `request_finished` — 请求开始/结束
+* `user_logged_in` / `user_logged_out` — 用户登录/登出
 
 ### Q23: Django 信号的使用方式？
 
@@ -540,6 +544,7 @@ graph TD
 ```
 
 **Serializer**：手动定义所有字段，灵活度高。
+
 **ModelSerializer**：基于 Django Model 自动生成字段，减少样板代码。
 
 ```python
@@ -582,10 +587,11 @@ class BookViewSet(viewsets.ModelViewSet):
 ### Q27: DRF 的认证方式有哪些？
 
 DRF 提供的内置认证类：
-- `BasicAuthentication` — HTTP 基本认证
-- `TokenAuthentication` — Token 认证
-- `SessionAuthentication` — Session 认证
-- `JWTAuthentication`（djangorestframework-simplejwt）— JWT 认证
+
+* `BasicAuthentication` — HTTP 基本认证
+* `TokenAuthentication` — Token 认证
+* `SessionAuthentication` — Session 认证
+* `JWTAuthentication`（djangorestframework-simplejwt）— JWT 认证
 
 ```python
 # 全局配置
@@ -628,10 +634,10 @@ class IsOwnerOrReadOnly(permissions.BasePermission):
 
 ### Q30: DRF 中如何优化性能？
 
-- 使用 `select_related` / `prefetch_related` 减少查询
-- 重写 `get_queryset` 方法添加优化
-- 使用 `SerializerMethodField` 时注意 N+1
-- 考虑使用 `django-restql` 或 GraphQL 减少数据量
+* 使用 `select_related` / `prefetch_related` 减少查询
+* 重写 `get_queryset` 方法添加优化
+* 使用 `SerializerMethodField` 时注意 N+1
+* 考虑使用 `django-restql` 或 GraphQL 减少数据量
 
 ---
 
@@ -639,10 +645,10 @@ class IsOwnerOrReadOnly(permissions.BasePermission):
 
 ### Q31: Celery 的核心组件有哪些？
 
-- **Producer**：产生任务的应用
-- **Broker**：消息中间件（RabbitMQ / Redis）
-- **Worker**：执行任务的进程
-- **Result Backend**：存储任务结果（Redis / Database）
+* **Producer**：产生任务的应用
+* **Broker**：消息中间件（RabbitMQ / Redis）
+* **Worker**：执行任务的进程
+* **Result Backend**：存储任务结果（Redis / Database）
 
 **Celery 架构流程图：**
 
@@ -843,10 +849,10 @@ SECURE_HSTS_INCLUDE_SUBDOMAINS = True
 
 ### Q42: 文件上传安全注意事项？
 
-- 验证文件类型（白名单，不依赖扩展名）
-- 限制文件大小
-- 使用 `django-storages` 存到云存储（非本地）
-- 不在用户可访问的目录执行上传文件
+* 验证文件类型（白名单，不依赖扩展名）
+* 限制文件大小
+* 使用 `django-storages` 存到云存储（非本地）
+* 不在用户可访问的目录执行上传文件
 
 ```python
 def validate_file_extension(value):
@@ -925,10 +931,11 @@ from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 ### Q49: Django 中 `queryset` 是惰性的吗？
 
 是的。QuerySet 是惰性求值的，在以下情况才会真正执行 SQL：
-- 迭代（`for obj in queryset`）
-- 切片（`queryset[:10]`）
-- `len()` / `list()` / `bool()`
-- `repr()` 在交互式中
+
+* 迭代（`for obj in queryset`）
+* 切片（`queryset[:10]`）
+* `len()` / `list()` / `bool()`
+* `repr()` 在交互式中
 
 ### Q50: Django URL 路由命名空间有什么用？
 
@@ -946,4 +953,4 @@ reverse('blog:post_detail', args=[post.id])
 
 ---
 
-> **整理说明**：以上问题来源于知乎、CSDN、Stack Overflow、Django 官方文档等多个渠道的高频面试题。建议配合 [Django 官方文档](https://docs.djangoproject.com/) 和 [DRF 文档](https://www.django-rest-framework.org/) 进行深入复习。
+>**整理说明**：以上问题来源于知乎、CSDN、Stack Overflow、Django 官方文档等多个渠道的高频面试题。建议配合 [Django 官方文档](https://docs.djangoproject.com/) 和 [DRF 文档](https://www.django-rest-framework.org/) 进行深入复习。
