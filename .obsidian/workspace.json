@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "django-interview-notes.md",
+                "file": "python/django/01-Django 基础.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "django-interview-notes"
+              "title": "01-Django 基础"
             }
           }
         ]
@@ -94,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "django-interview-notes.md",
+                "file": "python/django/01-Django 基础.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -104,7 +104,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "django-interview-notes 的反向链接列表"
+              "title": "01-Django 基础 的反向链接列表"
             }
           },
           {
@@ -196,7 +196,34 @@
   },
   "active": "fc0bcd3cb00ae74e",
   "lastOpenFiles": [
+    "python/django/进阶与源码.md",
+    "python/django/09-进阶与源码.md",
+    "python/django/08-安全.md",
+    "python/django/07-缓存与性能优化.md",
+    "python/django/04-中间件与信号.md",
+    "python/django/03-视图与模板.md",
+    "python/django/01-Django 基础.md",
+    "CLAUDE.md.tmp.13276.1777448813498",
+    "python/django/安全.md",
+    "python/django/02-orm.md",
+    "python/django/缓存与性能优化.md",
     "CLAUDE.md",
-    "django-interview-notes.md"
+    "python/django/中间件与信号.md",
+    "python/django/视图与模板.md",
+    "python/django/Django 基础.md",
+    "python/django/08-security.md",
+    "python/django/06-celery.md",
+    "python/django/04-middleware-signals.md",
+    "python/django/03-views-templates.md",
+    "python/django/01-basics.md",
+    "django-interview-notes.md",
+    "CLAUDE.md.tmp.13276.1777448535269",
+    "python/django/assets",
+    "python/django/09-advanced.md",
+    "python/django/05-drf.md",
+    "python/django/05-drf.md.tmp.13276.1777448510360",
+    "python/django/07-cache-performance.md",
+    "python/django",
+    "python"
   ]
 }
