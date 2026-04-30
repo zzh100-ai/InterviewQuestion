@@ -21,24 +21,7 @@
 * **Worker**：执行任务的进程
 * **Result Backend**：存储任务结果（Redis / Database）
 
-**Celery 架构流程图：**
-
-```mermaid
-graph TD
-    A[Django App<br/>Producer] -->|1. 发送任务| B[Broker<br/>Redis/RabbitMQ]
-    B -->|2. 分发任务| C[Worker 1]
-    B -->|2. 分发任务| D[Worker 2]
-    B -->|2. 分发任务| E[Worker N...]
-    C -->|3. 存储结果| F[Result Backend<br/>Redis/Database]
-    D -->|3. 存储结果| F
-    E -->|3. 存储结果| F
-    G[Beat Scheduler] -->|定时触发| B
-
-    style A fill:#e1f5fe
-    style B fill:#fff3e0
-    style F fill:#c8e6c9
-    style G fill:#fce4ec
-```
+![Celery 架构流程图](assets/06-celery-architecture.png)
 
 ### Q2: Django 中如何集成 Celery？
 

@@ -24,25 +24,7 @@
 | 适用关系 | ForeignKey / OneToOne | ManyToMany / 反向 ForeignKey |
 | 性能 | 减少 SQL 次数，但 JOIN 可能很大 | 两条 SQL，Python 层关联 |
 
-**N+1 问题与解决对比：**
-
-```mermaid
-graph TD
-    subgraph 有_N+1_问题
-        A1["Book.objects.all()"] -->|"1条SQL: SELECT * FROM book"| B1["返回 N 本书"]
-        B1 -->|"循环中"| C1["book.author.name"]
-        C1 -->|"第1次: SELECT * FROM author WHERE id=1"| D1["共 N 条额外SQL ⚠️"]
-        C1 -->|"第2次: SELECT * FROM author WHERE id=2"| D1
-        C1 -->|"... 共 N 次"| D1
-    end
-
-    subgraph 解决方案_select_related
-        A2["Book.objects.select_related('author').all()"] -->|"1条SQL: SELECT * FROM book LEFT JOIN author"| B2["一次查询返回全部数据 ✅"]
-    end
-
-    style D1 fill:#ffcdd2
-    style B2 fill:#c8e6c9
-```
+![N+1 查询问题与解决方案](assets/02-orm-n-plus-one.png)
 
 ```python
 # select_related：一条 SQL LEFT JOIN

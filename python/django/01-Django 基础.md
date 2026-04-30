@@ -19,24 +19,7 @@
 
 ### Q1: Django 的 MTV 架构是什么？和 MVC 有什么区别？
 
-**MTV 架构流程图：**
-
-```mermaid
-graph TD
-    A[浏览器/客户端] -->|HTTP 请求| B[URL 路由 urls.py]
-    B -->|匹配到视图| C[View 视图层]
-    C -->|读写数据| D[Model 模型层]
-    C -->|返回数据| E[Template 模板层]
-    D -->|数据库| F[(Database)]
-    E -->|渲染 HTML| C
-    C -->|HTTP 响应| A
-
-    style A fill:#e1f5fe
-    style C fill:#fff3e0
-    style D fill:#e8f5e9
-    style E fill:#fce4ec
-    style F fill:#f3e5f5
-```
+![MTV 架构流程图](assets/01-django-mtv.png)
 
 Django 采用 MTV（Model-Template-View）模式：
 
@@ -52,31 +35,7 @@ Django 采用 MTV（Model-Template-View）模式：
 
 ### Q2: Django 的请求生命周期是怎样的？
 
-```mermaid
-sequenceDiagram
-    participant Browser as 浏览器
-    participant WSGI as WSGI Server<br/>(Gunicorn/uWSGI)
-    participant MW1 as 中间件 1
-    participant MW2 as 中间件 2
-    participant URL as URL 路由器
-    participant View as 视图 View
-    participant Model as 模型 Model
-    participant Template as 模板 Template
-
-    Browser->>WSGI: 1. 发起 HTTP 请求
-    WSGI->>MW1: 2. process_request()
-    MW1->>MW2: 3. process_request()
-    MW2->>URL: 4. URL 匹配
-    URL->>View: 5. 调用视图函数
-    View->>Model: 6. 数据库查询
-    Model-->>View: 7. 返回数据
-    View->>Template: 8. 渲染模板
-    Template-->>View: 9. 返回 HTML
-    View-->>MW2: 10. 返回响应
-    MW2-->>MW1: 11. process_response()
-    MW1-->>WSGI: 12. process_response()
-    WSGI-->>Browser: 13. 返回 HTTP 响应
-```
+![Django 请求生命周期](assets/01-django-request-lifecycle.png)
 
 1. 用户发起 HTTP 请求
 2. WSGI 服务器（如 Gunicorn/uWSGI）接收请求
@@ -90,29 +49,7 @@ sequenceDiagram
 
 中间件是 Django 的请求/响应处理钩子框架，用于全局修改请求或响应。
 
-**中间件执行流程：**
-
-```mermaid
-graph LR
-    subgraph 请求阶段
-        A[请求 Request] --> B[M1.process_request]
-        B --> C[M2.process_request]
-        C --> D[M3.process_view]
-        D --> E[M3.process_view]
-        E --> F[视图 View]
-    end
-
-    subgraph 响应阶段
-        F --> G[M3.process_response]
-        G --> H[M2.process_response]
-        H --> I[M1.process_response]
-        I --> J[响应 Response]
-    end
-
-    style A fill:#e8f5e9
-    style F fill:#fff3e0
-    style J fill:#fce4ec
-```
+![中间件执行流程](assets/01-django-middleware.png)
 
 执行顺序：请求从 MIDDLEWARE[0] 到 MIDDLEWARE[n] 依次处理，进入视图；响应则从 MIDDLEWARE[n] 到 MIDDLEWARE[0] 反向返回（洋葱模型）。
 
@@ -126,24 +63,7 @@ graph LR
 
 ### Q4: Django 项目目录结构中各文件的作用？
 
-```mermind
-project/
-├── manage.py          # 项目管理入口，命令行工具
-├── project/
-│   ├── __init__.py
-│   ├── settings.py    # 全局配置
-│   ├── urls.py        # 根 URL 路由
-│   ├── asgi.py        # ASGI 配置
-│   └── wsgi.py        # WSGI 配置
-└── app/
-    ├── migrations/    # 数据库迁移文件
-    ├── models.py      # 数据模型
-    ├── views.py       # 视图
-    ├── urls.py        # 应用级路由
-    ├── admin.py       # 后台管理
-    ├── tests.py       # 测试
-    └── apps.py        # 应用配置
-```
+![Django 项目目录结构](assets/01-django-project-structure.png)
 
 ### Q5: Django 中 `settings.py` 的常用配置有哪些？
 

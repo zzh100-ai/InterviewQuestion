@@ -5,7 +5,15 @@
       "Bash(git add *)",
       "Bash(git commit -m ' *)",
       "Bash(git mv *)",
-      "Bash(git rm *)"
+      "Bash(git rm *)",
+      "Bash(git -C \"C:\\\\Users\\\\zhangziheng\\\\.claude\\\\skills\\\\drawio-skill\" pull --ff-only)",
+      "Bash(date +%s)",
+      "Bash(where draw.io)",
+      "Read(//c/Program Files/draw.io/**)",
+      "Bash(D:\\\\drawio\\\\draw.io\\\\draw.io.exe *)",
+      "Read(//tmp/**)",
+      "Bash(ls -la \"D:\\\\\\\\code\\\\\\\\面经\\\\\\\\output\\\\\\\\\")",
+      "Skill(update-config)"
     ]
   }
 }

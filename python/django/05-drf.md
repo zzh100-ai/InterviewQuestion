@@ -17,33 +17,7 @@
 
 ### Q1: DRF 中的序列化器（Serializer）和模型序列化器（ModelSerializer）的区别？
 
-**DRF 请求处理流程：**
-
-```mermaid
-graph TD
-    A[HTTP 请求] --> B[Django 中间件]
-    B --> C[URL 路由 Router]
-    C --> D[认证 Authentication]
-    D -->|通过| E[权限检查 Permission]
-    D -->|失败| D1["401 Unauthorized"]
-    E -->|通过| F[限流 Throttling]
-    E -->|失败| E1["403 Forbidden"]
-    F -->|通过| G[视图 ViewSet/APIView]
-    G --> H[序列化器 Serializer]
-    H -->|验证数据| I{valid?}
-    I -->|是| J[业务逻辑处理]
-    I -->|否| J1["400 Bad Request"]
-    J --> K[查询数据库 QuerySet]
-    K --> L[序列化返回数据]
-    L --> M[JSON 响应]
-
-    style A fill:#e1f5fe
-    style J fill:#fff3e0
-    style M fill:#c8e6c9
-    style D1 fill:#ffcdd2
-    style E1 fill:#ffcdd2
-    style J1 fill:#ffcdd2
-```
+![DRF 请求处理流程](assets/05-drf-request-flow.png)
 
 **Serializer**：手动定义所有字段，灵活度高。
 
