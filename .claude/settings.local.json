@@ -13,7 +13,13 @@
       "Bash(D:\\\\drawio\\\\draw.io\\\\draw.io.exe *)",
       "Read(//tmp/**)",
       "Bash(ls -la \"D:\\\\\\\\code\\\\\\\\面经\\\\\\\\output\\\\\\\\\")",
-      "Skill(update-config)"
+      "Skill(update-config)",
+      "Bash(node *)",
+      "Bash(curl *)",
+      "Bash(mv \"并发/03-并发与异步编程.md\" \"并发/01-并发与异步编程.md\")",
+      "Bash(mv \"网络/05-网络与系统设计.md\" \"网络/01-网络与系统设计.md\")",
+      "Bash(mv \"数据库/04-数据库.md\" \"数据库/01-数据库.md\")",
+      "Bash(mv \"算法与数据结构/06-算法与数据结构.md\" \"算法与数据结构/01-算法与数据结构.md\")"
     ]
   }
 }
