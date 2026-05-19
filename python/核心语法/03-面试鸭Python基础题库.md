@@ -1,14 +1,14 @@
-## 目录
+# 目录
 
-- [面试鸭 Python 基础题库](#面试鸭-python-基础题库)
+* [面试鸭 Python 基础题库](#面试鸭-python-基础题库)
 
 ---
 
-## 面试鸭 Python 基础题库
+# 面试鸭 Python 基础题库
 
-> 来源：面试鸭 mianshiya.com，共 74 题
+>来源：面试鸭 mianshiya.com，共 74 题
 
-### Q1: 2098. 解释型语言 Python 和编译型语言有什么区别？
+## Q1: 2098. 解释型语言 Python 和编译型语言有什么区别？
 
 **难度**: 简单  
 
@@ -16,57 +16,73 @@
 
 编译型语言在程序运行之前，编译器会把整份源码一次性翻译成目标平台的机器码，生成可执行文件。运行的时候直接跑机器码，不再需要源码。C、C++、Go、Rust 都是这个路子。
 
-Python 走的是解释执行的路线。CPython 解释器拿到 .py 文件后，先编译成字节码缓存为 .pyc 文件，然后由虚拟机逐条解释执行字节码。每次运行都要经过这个"翻译-执行"的过程，没有一步到位生成本地机器码的 ...
+Python 走的是解释执行的路线。CPython 解释器拿到 .py 文件后，先编译成字节码缓存为 .pyc 文件，然后由虚拟机逐条解释执行字节码。每次运行都要经过这个 " 翻译 - 执行 " 的过程，没有一步到位生成本地机器码的 ...
 
 ---
 
-### Q2: 2099. Python3 中 is 和 == 有什么区别？
+## Q2: 2099. Python3 中 is 和 == 有什么区别？
 
 **难度**: 简单  
 
 is 比较的是内存地址，== 比较的是值。
 
-is 判断两个变量是不是指向内存里同一个对象，底层就是比 id() 的返回值。== 判断两个对象的内容是否相等，底层调用的是对象的 __eq__ 方法。
+is 判断两个变量是不是指向内存里同一个对象，底层就是比 id() 的返回值。== 判断两个对象的内容是否相等，底层调用的是对象的 **eq** 方法。
 
 ▼
+
 python
+
 复制代码
+
 a = [1, 2, 3]
+
 b = a
+
 c = [1, 2, 3]
 
-print(a is b)  # True，a 和 b 指向同一个列表对象
-print(a == b)  # True，内容当然也 ...
+print(a is b) # True，a 和 b 指向同一个列表对象
+
+print(a == b) # True，内容当然也 ...
 
 ---
 
-### Q3: 2100. Python 中 read、readline、readlines 有哪些区别？
+## Q3: 2100. Python 中 read、readline、readlines 有哪些区别？
 
 **难度**: 中等  
 
 三者的核心区别在于读取粒度和返回类型不同：
 
 read() 一口气把整个文件内容读进来，返回一个大字符串
+
 readline() 每次只读一行，返回一个字符串，文件指针停在下一行开头
+
 readlines() 把所有行一次性读进来，返回一个字符串列表
 
 直接看代码，假设 data.txt 有 3 行内容：
 
 ▼
+
 text
+
 复制代码
+
 first line
+
 second line
+
 third line
 
 ▼
+
 python
+
 复制代码
+
 # read( ...
 
 ---
 
-### Q4: 2101. 什么是 Python 面向对象中的继承特点？
+## Q4: 2101. 什么是 Python 面向对象中的继承特点？
 
 **难度**: 中等  
 
@@ -75,14 +91,18 @@ Python 的继承就是让一个类直接拿到另一个类的属性和方法，�
 Python 跟 Java 不一样的地方在于它支持 多继承，一个子类可以同时继承多个父类。多继承虽然灵活，但也带来了方法冲突的问题，Python 用 MRO 来确定方法调用顺序。来看个最直观的例子：
 
 ▼
+
 python
+
 复制代码
+
 class Animal:
-    def __init__(self, nam ...
+
+    def **init**(self, nam ...
 
 ---
 
-### Q5: 2102. Python 中 any() 和 all() 方法有什么作用？
+## Q5: 2102. Python 中 any() 和 all() 方法有什么作用？
 
 **难度**: 简单  
 
@@ -93,36 +113,46 @@ all() 刚好反过来，所有元素都为真才返回 True，碰到一个假值
 两个函数都有 短路特性，any() 找到第一个真值就停，all() 找到第一个假值就停，不会傻乎乎地把整个可迭代对象遍历完。处理大数据集或者生成器表达式的时候，这个特性能省不少时间。
 
 ▼
+
 python
+
 复制代码
+
 # any(): 有一个真就够了
+
 p ...
 
 ---
 
-### Q6: 2103. 说明 Python3 中装饰器的用法
+## Q6: 2103. 说明 Python3 中装饰器的用法
 
 **难度**: 简单  
 
-在Python中，装饰器是一种设计模式，在不需要改变其本身的代码的情况下，来修改或增强函数、方法或类的功能。
+在 Python 中，装饰器是一种设计模式，在不需要改变其本身的代码的情况下，来修改或增强函数、方法或类的功能。
 
 装饰器本质上是一个函数，它接受一个函数作为参数并返回一个新的函数。
 
 扩展知识
+
 基本装饰器：
 
 装饰器通常使用 @ 语法来应用。下面一个简单的装饰器示例，它在函数执行前后打印一些信息：
 
 ▼
+
 python
+
 复制代码
+
 def my_decorator(func):
+
     def wrapper():
+    
     ...
 
 ---
 
-### Q7: 2104. 说明 Python3 中 yield 的用法
+## Q7: 2104. 说明 Python3 中 yield 的用法
 
 **难度**: 简单  
 
@@ -131,34 +161,44 @@ yield 是用于生成器（generator）的一种关键字。与 return 类似，
 下面是一个简单的例子，来说明 yield 的用法：
 
 ▼
+
 python
+
 复制代码
+
 def simple_generator():
-    yield  ...
+
+    yield ...
 
 ---
 
-### Q8: 2105. 说明 Python 中 enumerate() 的用法
+## Q8: 2105. 说明 Python 中 enumerate() 的用法
 
 **难度**: 简单  
 
 enumerate() 是 Python 中的一个内置函数，它用于将一个可迭代对象（如列表、元组、字符串等）组合为一个索引序列，同时返回数据和数据下标（从零开始）。
 
 扩展知识
+
 基本用法：
 
 使用 enumerate() 可以在循环中同时获得元素和它的索引。
 
 ▼
+
 python
+
 复制代码
+
 items = ['a', 'b', 'c']
+
 for index, value in enumerate(items):
+
     ...
 
 ---
 
-### Q9: 2106. 解释 Python 中 //、％ 和 ** 运算符
+## Q9: 2106. 解释 Python 中 //、％ 和 ** 运算符
 
 **难度**: 简单  
 
@@ -172,7 +212,7 @@ for index, value in enumerate(items):
 
 ---
 
-### Q10: 2107. Python 有哪些特点和优点？
+## Q10: 2107. Python 有哪些特点和优点？
 
 **难度**: 简单  
 
@@ -181,28 +221,34 @@ Python 最核心的特点就是语法极简、生态极强。
 语法层面，Python 用缩进代替大括号，代码读起来跟伪代码差不多。同样一个读文件的操作，Java 写下来十几行，Python 三行搞定：
 
 ▼
+
 python
+
 复制代码
+
 with open('data.txt') as f:
+
     for line in f:
+    
         print(line.strip())
 
 生态层面，Python 的第三方库覆盖面非常广。Web 开发有 Django、 ...
 
 ---
 
-### Q11: 2108. Python 中深拷贝和浅拷贝有什么区别？
+## Q11: 2108. Python 中深拷贝和浅拷贝有什么区别？
 
 **难度**: 中等  
 
 1）浅拷贝（shallow copy）：创建一个新的对象，但不复制内部嵌套的对象。新对象只复制了原对象的引用，因此对任一对象中的改动会影响到另一个对象。
+
 2）深拷贝（deep copy）：创建一个新的对象，同时递归地复制所有嵌套的对象。这样即使内部嵌套对象被修改，原对象和复制对象也不会相互影响。
 
 浅拷贝可以通过 copy 模块的 copy() 函数或者对象的 copy() 方法实现，如 copy.copy(obj)。深拷贝可以通过 `cop ...
 
 ---
 
-### Q12: 2109. Python 中的列表和元组有什么区别？
+## Q12: 2109. Python 中的列表和元组有什么区别？
 
 **难度**: 中等  
 
@@ -211,26 +257,35 @@ with open('data.txt') as f:
 列表创建之后可以随便改，增删改查都支持。元组一旦创建，里面的元素引用就定死了，不能改、不能加、不能删。
 
 ▼
+
 python
+
 复制代码
+
 lst = [1, 2, 3]
-lst[0] = 99       # 没问题
-lst.append(4)     # 没问题
+
+lst[0] = 99 # 没问题
+
+lst.append(4) # 没问题
 
 tpl = (1, 2, 3)
-tpl[0] = 99       # TypeError: 't ...
+
+tpl[0] = 99 # TypeError: 't ...
 
 ---
 
-### Q13: 2110. 什么是 Python 中的三元表达式？
+## Q13: 2110. 什么是 Python 中的三元表达式？
 
 **难度**: 简单  
 
 Python 中的三元表达式允许我们在一行代码中编写简单的条件判断，可以简洁地将一个条件操作的结果赋值给一个变量。其基本语法是：
 
 ▼
+
 python
+
 复制代码
+
 value_if_true if condition else value_if_false
 
 扩展知识
@@ -238,11 +293,12 @@ value_if_true if condition else value_if_false
 1）工作原理：
 
 condition：这是一个布尔表达式，当它为 True 时，会执行 value_if_true 并返回结果。
+
 `value_if_tr ...
 
 ---
 
-### Q14: 2111. 请简单介绍 Python 的 Flask 框架，有什么作用？
+## Q14: 2111. 请简单介绍 Python 的 Flask 框架，有什么作用？
 
 **难度**: 简单  
 
@@ -251,18 +307,24 @@ Flask 是 Python 生态里最流行的微框架，核心只提供路由、请求
 一个最小的 Flask 应用就几行代码：
 
 ▼
+
 python
+
 复制代码
+
 from flask import Flask
-app = Flask(__name__)
+
+app = Flask(**name**)
 
 @app.route("/")
+
 def hello():
+
     ret ...
 
 ---
 
-### Q15: 2112. 如何在 Python 中管理内存？
+## Q15: 2112. 如何在 Python 中管理内存？
 
 **难度**: 简单  
 
@@ -271,52 +333,64 @@ Python 的内存管理核心是引用计数 + 分代垃圾回收这套组合。
 每个对象内部都有一个引用计数器，有人引用就 +1，引用断了就 -1，降到 0 立刻释放。但引用计数搞不定循环引用，所以 CPython 又加了一层分代垃圾回收器来兜底。
 
 ▼
+
 python
+
 复制代码
+
 import sys
 
 a = [1, 2, 3]
-print(sys.getrefcount(a))  # 输出 2，a 本身 + getrefcount 参数各算一次引用
+
+print(sys.getrefcount(a)) # 输出 2，a 本身 + getrefcount 参数各算一次引用
 
 b = a
+
 p ...
 
 ---
 
-### Q16: 2113. Python 中 help() 函数和 dir() 函数有什么作用？
+## Q16: 2113. Python 中 help() 函数和 dir() 函数有什么作用？
 
 **难度**: 简单  
 
 help() 函数和 dir() 函数是两个非常有用的内置函数，主要用于帮助开发者了解对象的详细信息以及对象的属性和方法。
 
 help() 函数：
+
 主要用于查看对象（函数、模块、类等）的详细文档说明。
+
 使用方式：help(object)，比如 help(print) 会输出 print 函数的用法和说明。
+
 dir() 函数：
+
 主要用于查看对象的属性和方法列表。
+
 使用方式：`dir(obj ...
 
 ---
 
-### Q17: 2114. Python 程序退出时，是否释放所有内存分配？
+## Q17: 2114. Python 程序退出时，是否释放所有内存分配？
 
 **难度**: 简单  
 
 不一定全部释放。Python 退出时，CPython 的引用计数机制会把大部分对象清掉，但有几类内存是收不回来的：
 
 循环引用如果没被 gc 及时扫到
+
 C 扩展自己 malloc 的内存
+
 以及一些全局缓存比如 intern 过的字符串和小整数池
 
 这些在进程结束前都可能还留在那。
 
-不过实际上，操作系统在进程退出后会回收这个进程的全部虚拟内存，所以对于普通应用来说，Python 没清理干净的那部分内存也不会真的"泄漏"到系统层面。
+不过实际上，操作系统在进程退出后会回收这个进程的全部虚拟内存，所以对于普通应用来说，Python 没清理干净的那部分内存也不会真的 " 泄漏 " 到系统层面。
 
 真正需 ...
 
 ---
 
-### Q18: 2115. 什么是 Python 的字典，有哪些用法？
+## Q18: 2115. 什么是 Python 的字典，有哪些用法？
 
 **难度**: 中等  
 
@@ -329,14 +403,18 @@ C 扩展自己 malloc 的内存
 常用操作一览：
 
 ▼
+
 python
+
 复制代码
+
 # 创建
+
 user = {"name": "Alice", "age": 30, ...
 
 ---
 
-### Q19: 2116. 什么是 Python 的负索引？
+## Q19: 2116. 什么是 Python 的负索引？
 
 **难度**: 简单  
 
@@ -345,11 +423,16 @@ Python 的负索引是一种用于从序列（如列表、元组、字符串等�
 例如：
 
 ▼
+
 python
+
 复制代码
+
 my_list = [10, 20, 30, 40, 50]
-print(my_list[-1])  # 输出 50
-print(my_list[-2])  # 输出 40
+
+print(my_list[-1]) # 输出 50
+
+print(my_list[-2]) # 输出 40
 
 扩展知识
 
@@ -357,7 +440,7 @@ print(my_list[-2])  # 输出 40
 
 ---
 
-### Q20: 2117. Python 中 join() 和 split() 函数有什么区别？
+## Q20: 2117. Python 中 join() 和 split() 函数有什么区别？
 
 **难度**: 中等  
 
@@ -366,94 +449,122 @@ print(my_list[-2])  # 输出 40
 方向完全相反，一个拆一个合。
 
 ▼
+
 python
+
 复制代码
+
 s = "alice,bob,charlie"
-lst = s.split(",")        # ['alice', 'bob', 'charlie']
-s2 = ",".join(lst)        # 'alice,bob,charlie'
+
+lst = s.split(",") # ['alice', 'bob', 'charlie']
+
+s2 = ",".join(lst) # 'alice,bob,charlie'
 
 注意调用方式不 ...
 
 ---
 
-### Q21: 2118. Python 是否区分大小写？
+## Q21: 2118. Python 是否区分大小写？
 
 **难度**: 简单  
 
 Python 是严格区分大小写的语言。变量名、函数名、类名、模块名，只要大小写不同就是完全不同的标识符。name 和 Name 在 Python 眼里是两个毫不相关的东西。
 
 ▼
+
 python
+
 复制代码
+
 count = 10
+
 Count = 20
+
 COUNT = 30
 
-print(count, Count, COUNT)   # 10 20 30，三个独立变量
+print(count, Count, COUNT) # 10 20 30，三个独立变量
 
 关键字也一样，True 是布尔值，写成 true 直接 NameErr ...
 
 ---
 
-### Q22: 2119. 说明 Python 中标识符的命名规则
+## Q22: 2119. 说明 Python 中标识符的命名规则
 
 **难度**: 简单  
 
 标识符是变量、函数、类、模块或其他对象的名称。Python 对标识符的命名有一些基本的规则：
 
 1）标识符只能包含字母（大写或小写）、数字和下划线（_），但不能以数字开头。
+
 2）标识符不能是 Python 的保留关键字。例如，False, class, finally, is, return 等等。
+
 3）标识符是区分大小写的。例如，myVariable 和 myvariable 是两个不同的标识符。
+
 4）标识符尽量具有描述性，便于代 ...
 
 ---
 
-### Q23: 2120. Python 中如何删除字符串中的前置空格？
+## Q23: 2120. Python 中如何删除字符串中的前置空格？
 
 **难度**: 简单  
 
 用 lstrip() 方法，它会把字符串开头所有的空白字符一次性干掉，包括空格、制表符 \t、换行符 \n、回车符 \r 这些。
 
 ▼
+
 python
+
 复制代码
-text = "   \t Hello, World!"
-print(text.lstrip())  # "Hello, World!"
+
+text = " \t Hello, World!"
+
+print(text.lstrip()) # "Hello, World!"
 
 不传参数就是去空白字符，传了参数就是去你指定的字符集合：
 
 ▼
+
 python
+
 复制代码
+
 text = "###Hello###"
+
 print(te ...
 
 ---
 
-### Q24: Python 中如何删除字符串中的前置空格？
+## Q24: Python 中如何删除字符串中的前置空格？
 
 **难度**: 简单  
 
 用 lstrip() 方法，它会把字符串开头所有的空白字符一次性干掉，包括空格、制表符 \t、换行符 \n、回车符 \r 这些。
 
 ▼
-python
-复制代码
-text = "   \t Hello, World!"
-print(text.lstrip())  # "Hello, World!"
 
+python
+
+复制代码
+
+text = " \t Hello, World!"
+
+print(text.lstrip()) # "Hello, World!"
 
 不传参数就是去空白字符，传了参数就是去你指定的字符集合：
 
 ▼
+
 python
+
 复制代码
+
 text = "###Hello###"
+
 print(te ...
 
 ---
 
-### Q25: Python 中如何将字符串转换为小写？
+## Q25: Python 中如何将字符串转换为小写？
 
 **难度**: 简单  
 
@@ -462,11 +573,16 @@ print(te ...
 示例代码如下：
 
 ▼
+
 python
+
 复制代码
+
 string = "Hello, World!"
+
 lowercase_string = string.lower()
-print(lowercase_string)  # 运行结果：hello, world!
+
+print(lowercase_string) # 运行结果：hello, world!
 
 扩展知识
 
@@ -474,7 +590,7 @@ print(lowercase_string)  # 运行结果：hello, world!
 
 ---
 
-### Q26: Python 的 pass 语句有什么作用？
+## Q26: Python 的 pass 语句有什么作用？
 
 **难度**: 中等  
 
@@ -485,16 +601,20 @@ Python 用缩进来划分代码块，不像 C、Java 可以写个空花括号 {}
 最典型的场景就是先搭框架后填肉：
 
 ▼
+
 python
+
 复制代码
+
 class PaymentGateway:
+
     pass
 
 def calculate_discount(pr ...
 
 ---
 
-### Q27: 什么是 Python 的闭包？
+## Q27: 什么是 Python 的闭包？
 
 **难度**: 简单  
 
@@ -503,18 +623,24 @@ def calculate_discount(pr ...
 举个简单的例子：
 
 ▼
+
 python
+
 复制代码
+
 def outer_function(x):
+
     def inner_function(y):
+    
         return x + y
+    
     return inner_function
 
 closure ...
 
 ---
 
-### Q28: 什么是 Python 的关系运算符？
+## Q28: 什么是 Python 的关系运算符？
 
 **难度**: 简单  
 
@@ -523,57 +649,94 @@ closure ...
 Python 一共提供了 6 个：
 
 1）< 小于
+
 2）<= 小于等于
+
 3）> 大于
+
 4）>= 大于等于
+
 5）== 等于
+
 6）!= 不等于
 
 ▼
+
 python
+
 复制代码
-print(5 > 3)    # True
-print(2 == 3)   # False
-print("abc" < "abd")  # True，按字符 U ...
+
+print(5 > 3) # True
+
+print(2 == 3) # False
+
+print("abc" < "abd") # True，按字符 U ...
 
 ---
 
-### Q29: 什么是 Python 的赋值和算术运算符？
+## Q29: 什么是 Python 的赋值和算术运算符？
 
 **难度**: 简单  
 
 面试鸭
+
 《用户协议》
+
 《隐私政策》
+
 友情链接
+
 编程导航
+
 老鱼简历
+
 代码小抄
+
 剪切助手
+
 联系我们
+
 商务合作
+
 站长：程序员鱼皮
+
 关注我们
+
 扫码关注
+
 面试鸭公众号
-2026 上海鱼鸢网络技术有限公司 沪ICP备19026706号-5
-沪公网安备31010602009589号增值电信业务经营许可证  关于我们
+
+2026 上海鱼鸢网络技术有限公司 沪 ICP 备 19026706 号 -5
+
+沪公网安备 31010602009589 号增值电信业务经营许可证  关于我们
+
 面试刷题神器
+
 助您更快速
+
 通过面试
+
 题目全面 命中率高
+
 题解优质 持续更新
+
 学习交流 回答讨论
+
 随时随地 一键开刷
+
 专属社群 答疑解惑
+
 扫码登录开启刷题之旅
+
 未注册的微信号将自动创建账号
+
 微信扫码登录
+
 注册登录即表示同意  用户协议 和  隐私政策
 
 ---
 
-### Q30: 什么是 Python 的逻辑运算符？
+## Q30: 什么是 Python 的逻辑运算符？
 
 **难度**: 简单  
 
@@ -582,23 +745,30 @@ Python 逻辑运算符有 3 个，and、or、not，核心价值是把多条件�
 1）and 运算符：如果两边的表达式都为真，则结果为真；否则结果为假。
 
 ▼
-python
-复制代码
-True and False  # False
-True and True  # True
 
+python
+
+复制代码
+
+True and False # False
+
+True and True # True
 
 2）or 运算符：如果两边的表达式有一个为真，则结果为真；如果都为假，结果为假。
 
 ▼
+
 python
+
 复制代码
-True or False  # True
+
+True or False # True
+
  ...
 
 ---
 
-### Q31: 什么是 Python 的成员运算符？
+## Q31: 什么是 Python 的成员运算符？
 
 **难度**: 简单  
 
@@ -607,35 +777,42 @@ True or False  # True
 1）in 运算符：如果在指定的序列中找到该值，则返回 True；否则返回 False。例如：
 
 ▼
-python
-复制代码
-'a' in 'banana'  # True
-1 in [1, 2, 3]   # True
 
+python
+
+复制代码
+
+'a' in 'banana' # True
+
+1 in [1, 2, 3] # True
 
 2）not in 运算符：如果在指定的序列中找不到该值，则返回 True；否则返回 False。例如： ...
 
 ---
 
-### Q32: 什么是 Python 的身份运算符？
+## Q32: 什么是 Python 的身份运算符？
 
 **难度**: 简单  
 
 身份运算符用于比较两个对象的存储单元，换句话说，它们用来判断两个对象是否为同一个实体（即是否引用同一个内存位置）。Python 提供了两个身份运算符：is 和 is not。
 
 1）is 运算符：如果两个变量引用的是同一个对象（即内存地址相同），则返回 True，否则返回 False。
+
 2）is not 运算符：如果两个变量引用的不是同一个对象，则返回 True，否则返回 False。
 
 举个简单的例子：
 
 ▼
+
 python
+
 复制代码
+
  ...
 
 ---
 
-### Q33: 什么是 Python 的位运算符？
+## Q33: 什么是 Python 的位运算符？
 
 **难度**: 简单  
 
@@ -644,63 +821,81 @@ python
 Python 一共提供了 6 个位运算符：
 
 & 按位与，两个位都是 1 才得 1
+
 | 按位或，有一个 1 就得 1
+
 ^ 按位异或，两个位不同才得 1
+
 ~ 按位取反，0 变 1、1 变 0
+
 << 左移，右边补 0
->> 右移，左边补符号位
+
+>>右移，左边补符号位
 ▼
 python
 复制代码
-a = 0b1100  # 12
-b = 0b1010  # 10 ...
+a = 0b1100 # 12
+b = 0b1010 # 10 ...
 
 ---
 
-### Q34: 如何在 Python 中使用多进制数字？
+## Q34: 如何在 Python 中使用多进制数字？
 
 **难度**: 简单  
 
 Python 里用前缀来区分不同进制的数字字面量，一共支持三种非十进制写法：
 
 0b 或 0B 表示二进制
+
 0o 或 0O 表示八进制
+
 0x 或 0X 表示十六进制。
 
 写进代码之后 Python 内部全都当成十进制整数来存储和运算，进制只是一种书写方式。
 
 ▼
+
 python
+
 复制代码
-a = 0b1010     # 二进制，值是 10
-b = 0o12       # 八进制，值是 10
-c = 0xA         ...
+
+a = 0b1010 # 二进制，值是 10
+
+b = 0o12 # 八进制，值是 10
+
+c = 0xA ...
 
 ---
 
-### Q35: Python 中如何获取字典的所有键？
+## Q35: Python 中如何获取字典的所有键？
 
 **难度**: 简单  
 
 用字典的 .keys() 方法就能拿到所有键，返回的是一个视图对象，不是列表。
 
 ▼
-python
-复制代码
-my_dict = {'name': 'Alice', 'age': 25, 'city': 'New York'}
-keys = my_dict.keys()
-print(keys)  # 输出 dict_keys(['name', 'age', 'city'])
 
+python
+
+复制代码
+
+my_dict = {'name': 'Alice', 'age': 25, 'city': 'New York'}
+
+keys = my_dict.keys()
+
+print(keys) # 输出 dict_keys(['name', 'age', 'city'])
 
 如果需要拿到真正的列表，用 list() 包一下就行：
 
 ▼
+
 p
+
 复制代码
 
 ---
 
-### Q36: 为什么 Python 不建议使用下划线开头的标识符？
+## Q36: 为什么 Python 不建议使用下划线开头的标识符？
 
 **难度**: 简单  
 
@@ -716,33 +911,37 @@ Python 的下划线命名约定分四种：
 
 ---
 
-### Q37: Python 如何声明多个变量并赋值？
+## Q37: Python 如何声明多个变量并赋值？
 
 **难度**: 简单  
 
 Python 支持多重赋值，一行就能声明多个变量并赋值：
 
 ▼
-python
-复制代码
-a, b, c = 1, 2, 3
 
+python
+
+复制代码
+
+a, b, c = 1, 2, 3
 
 这行代码同时把 1 赋给 a，2 赋给 b，3 赋给 c。
 
 如果多个变量要赋同一个值，可以链式赋值：
 
 ▼
-python
-复制代码
-x = y = z = 0
 
+python
+
+复制代码
+
+x = y = z = 0
 
 多重赋值的执行过程是：先把右边的值打包成元组，再依次解包赋给左边的变量。链式赋值则是所有变量指向同一个对象。
 
 ---
 
-### Q38: 什么是 Python 元组的解封装？
+## Q38: 什么是 Python 元组的解封装？
 
 **难度**: 简单  
 
@@ -754,93 +953,131 @@ Python 元组的解封装（tuple unpacking）是将一个元组的多个元素�
 
 ---
 
-### Q39: 什么是 Python？为什么它会这么流行？
+## Q39: 什么是 Python？为什么它会这么流行？
 
 **难度**: 简单  
 
 Python 之所以如此流行，主要有以下几个原因：
+
 1）简单易学：Python 的语法设计非常简洁，代码读起来就像普通的英文句子，非常容易上手。
+
 2）丰富的库和框架：Python 拥有庞大的标准库和第三方库，可以轻松实现从数据挖掘到 web 开发等各种任务。
+
 3）跨平台：Python 可以运行在不同操作系统上，比如 Windows、macOS、Linux 等，这使得开发和部署非常方便。
+
 4）强大的社区支持：Python 社区非常活跃，遇到问题时容易找到各种解决 ...
 
 ---
 
-### Q40: 请列举一些 Python 的应用场景
+## Q40: 请列举一些 Python 的应用场景
 
 **难度**: 简单  
 
 面试鸭
+
 《用户协议》
+
 《隐私政策》
+
 友情链接
+
 编程导航
+
 老鱼简历
+
 代码小抄
+
 剪切助手
+
 联系我们
+
 商务合作
+
 站长：程序员鱼皮
+
 关注我们
+
 扫码关注
+
 面试鸭公众号
-2026 上海鱼鸢网络技术有限公司 沪ICP备19026706号-5
-沪公网安备31010602009589号增值电信业务经营许可证  关于我们
+
+2026 上海鱼鸢网络技术有限公司 沪ICP 备19026706 号-5
+
+沪公网安备31010602009589 号增值电信业务经营许可证  关于我们
+
 面试刷题神器
+
 助您更快速
+
 通过面试
+
 题目全面 命中率高
+
 题解优质 持续更新
+
 学习交流 回答讨论
+
 随时随地 一键开刷
+
 专属社群 答疑解惑
+
 扫码登录开启刷题之旅
+
 未注册的微信号将自动创建账号
+
 微信扫码登录
+
 注册登录即表示同意  用户协议 和  隐私政策
 
 ---
 
-### Q41: Python 有哪些局限性？
+## Q41: Python 有哪些局限性？
 
 **难度**: 简单  
 
 Python 作为一种广泛使用的编程语言，有很多优点，如易读性高、库丰富、社区活跃等，但它也存在一些局限性。主要的局限性包括：
 
 1）性能限制：Python 是解释型语言，执行速度较低，通常比编译型语言如 C 或 C++ 慢很多。
+
 2）多线程问题：由于全局解释器锁 (GIL) 的存在，Python 的多线程并不能真正利用多核 CPU，提高多线程并发能力有限。
+
 3）移动开发：相比 Java 或 Kotlin，Python 在移动开发（Android 和 iOS ...
 
 ---
 
-### Q42: 请解释 Python 代码的执行过程？
+## Q42: 请解释 Python 代码的执行过程？
 
 **难度**: 简单  
 
 Python 代码的执行过程主要可以分为以下几个步骤：编译、解释、运行。
 
 1）编译（Compilation）：
-当我们运行 Python 程序时，Python 解释器会首先将源代码（.py 文件中的代码）转换为字节码。这个字节码是一个中间代码，与平台无关。Python 在这里的“编译”不同于传统的编译语言，如 C 或 Java。对于 Python 来说，这个过程是隐藏的，直接在后台处理。
+
+当我们运行 Python 程序时，Python 解释器会首先将源代码（.py 文件中的代码）转换为字节码。这个字节码是一个中间代码，与平台无关。Python 在这里的" 编译" 不同于传统的编译语言，如 C 或 Java。对于 Python 来说，这个过程是隐藏的，直接在后台处理。
 
 2）**解释（Interpretation） ...
 
 ---
 
-### Q43: Python 有哪些内置数据结构？
+## Q43: Python 有哪些内置数据结构？
 
 **难度**: 简单  
 
 Python 主要有以下几种内置数据结构：
 
 1）列表（List）：有序、可变的序列，使用方括号 [] 表示。
+
 2）元组（Tuple）：有序、不可变的序列，使用小括号 () 表示。
+
 3）集合（Set）：无序、唯一元素的集合，使用大括号 {} 表示。注意，空集合要用 set() 表示而不是 {}，因为 {} 是用来表示空字典的。
+
 4）字典（Dictionary）：键值对的集合，使用大括号 {} 表示。
+
 5）字符串（String）：有 ...
 
 ---
 
-### Q44: Python 中单引号和双引号有什么区别？
+## Q44: Python 中单引号和双引号有什么区别？
 
 **难度**: 中等  
 
@@ -849,33 +1086,42 @@ Python 主要有以下几种内置数据结构：
 扩展知识
 
 1）多行字符串
+
 Python 还支持使用三重引号（''' 或 """）定义多行字符串。这在编写多行注释或需要包含多个段落的字符串时非常有用。例如：
 
 ▼
+
 python
+
 复制代码
+
 m ...
 
 ---
 
-### Q45: Python 中 append、insert 和 extend 有什么区别？
+## Q45: Python 中 append、insert 和 extend 有什么区别？
 
 **难度**: 简单  
 
 append 末尾加一个元素，insert 指定下标塞一个元素，extend 末尾批量加一组元素。
 
 ▼
+
 python
+
 复制代码
+
 nums = [10, 20, 30]
 
-nums.append(40)          # [10, 20, 30, 40]
-nums.insert(1, 15)       # [10, 15, 20, 30, 40]
-nums.extend([50, 60])    # [10, 15, 20, 30, 40, 50, ...
+nums.append(40) # [10, 20, 30, 40]
+
+nums.insert(1, 15) # [10, 15, 20, 30, 40]
+
+nums.extend([50, 60]) # [10, 15, 20, 30, 40, 50, ...
 
 ---
 
-### Q46: Python 中 break、continue、pass 有什么作用？
+## Q46: Python 中 break、continue、pass 有什么作用？
 
 **难度**: 中等  
 
@@ -884,230 +1130,194 @@ nums.extend([50, 60])    # [10, 15, 20, 30, 40, 50, ...
 1）break：用于终止当前循环。当 break 语句被执行时，程序将跳出当前的循环语句，继续执行循环之后的代码。
 
 ▼
-python
-复制代码
-for i in range(5):
-    if i == 3:
-        break
-    print(i)
-# 输出：0 1 2
 
+python
+
+复制代码
+
+for i in range(5):
+
+    if i == 3:
+    
+        break
+    
+    print(i)
+
+# 输出：0 1 2
 
 2）continue：用于跳过当前循环中的剩 ...
 
 ---
 
-### Q47: Python 中如何实现 switch 语句？
+## Q47: Python 中如何实现 switch 语句？
 
 **难度**: 简单  
 
-
-
 ---
 
-### Q48: Python 的 range 函数如何运用？请举例说明
+## Q48: Python 的 range 函数如何运用？请举例说明
 
 **难度**: 简单  
 
-
-
 ---
 
-### Q49: 如何更改 Python 列表的数据类型？
+## Q49: 如何更改 Python 列表的数据类型？
 
 **难度**: 简单  
 
-
-
 ---
 
-### Q50: Python 中怎么注释代码？
+## Q50: Python 中怎么注释代码？
 
 **难度**: 简单  
 
-
-
 ---
 
-### Q51: Python 中的 != 和 is not 运算符有什么区别？
+## Q51: Python 中的 != 和 is not 运算符有什么区别？
 
 **难度**: 中等  
 
-
-
 ---
 
-### Q52: Python 是否有 main 函数？
+## Q52: Python 是否有 main 函数？
 
 **难度**: 简单  
 
-
-
 ---
 
-### Q53: Python 的 iterables 和 iterators 有什么区别？
+## Q53: Python 的 iterables 和 iterators 有什么区别？
 
 **难度**: 中等  
 
-
-
 ---
 
-### Q54: Python 中的 Map 函数有什么作用？怎么使用？
+## Q54: Python 中的 Map 函数有什么作用？怎么使用？
 
 **难度**: 中等  
 
-
-
 ---
 
-### Q55: Python 中的 Filter 函数有什么作用？怎么使用？
+## Q55: Python 中的 Filter 函数有什么作用？怎么使用？
 
 **难度**: 中等  
 
-
-
 ---
 
-### Q56: Python 中 reduce 函数有什么作用？怎么使用？
+## Q56: Python 中 reduce 函数有什么作用？怎么使用？
 
 **难度**: 中等  
 
-
-
 ---
 
-### Q57: 什么是 Python 的 pickling 和 unpickling？
+## Q57: 什么是 Python 的 pickling 和 unpickling？
 
 **难度**: 中等  
 
-
-
 ---
 
-### Q58: 什么是 Python 的生成器？
+## Q58: 什么是 Python 的生成器？
 
 **难度**: 中等  
 
-
-
 ---
 
-### Q59: Python 中如何使用索引反转字符串？
+## Q59: Python 中如何使用索引反转字符串？
 
 **难度**: 简单  
 
-
-
 ---
 
-### Q60: 什么是 Python 的 Lambda 函数，有哪些应用场景？
+## Q60: 什么是 Python 的 Lambda 函数，有哪些应用场景？
 
 **难度**: 中等  
 
-
-
 ---
 
-### Q61: Python 的迭代器和生成器有什么区别？
+## Q61: Python 的迭代器和生成器有什么区别？
 
 **难度**: 中等  
 
-
-
 ---
 
-### Q62: Python 正则表达式中 match 和 search 有什么区别？
+## Q62: Python 正则表达式中 match 和 search 有什么区别？
 
 **难度**: 中等  
 
-
-
 ---
 
-### Q63: 为什么 Python 中没有函数重载？
+## Q63: 为什么 Python 中没有函数重载？
 
 **难度**: 简单  
 
-
-
 ---
 
-### Q64: Python 的 __init__ 和 __new__ 方法有什么区别？
+## Q64: Python 的 **init** 和 **new** 方法有什么区别？
 
 **难度**: 中等  
 
-
-
 ---
 
-### Q65: 你知道哪些 Python 魔术方法？
+## Q65: 你知道哪些 Python 魔术方法？
 
 **难度**: 简单  
 
-
-
 ---
 
-### Q66: Python 函数参数 *arg 和 **kwargs 有什么区别？怎么使用？
+## Q66: Python 函数参数 *arg 和 **kwargs 有什么区别？怎么使用？
 
 **难度**: 中等  
 
-
-
 ---
 
-### Q67: 请介绍 Python 中变量的作用域？
+## Q67: 请介绍 Python 中变量的作用域？
 
 **难度**: 简单  
 
-
-
 ---
 
-### Q68: Python 2 和 Python 3 有什么区别？
+## Q68: Python 2 和 Python 3 有什么区别？
 
 **难度**: 中等  
 
-
-
 ---
 
-### Q69: 什么是「猴子补丁」（monkey patching）？
+## Q69: 什么是「猴子补丁」（monkey patching）？
 
 **难度**: 中等  
 
-
-
 ---
 
-### Q70: 如何在 Python 中实现字符串替换操作？
+## Q70: 如何在 Python 中实现字符串替换操作？
 
 **难度**: 简单  
 
-
-
 ---
 
-### Q71: 2167. 如何在 Python 中实现字符串替换操作？
+## Q71: 2167. 如何在 Python 中实现字符串替换操作？
 
 **难度**: 中等  
 
 字符串替换操作主要使用 str.replace() 方法。这个方法可以用来替换字符串中的某个子字符串为一个新的子字符串。
 
 示例代码：
+
 ▼
+
 python
+
 复制代码
+
 original_string = "hello world"
+
 new_string = original_string.replace("world", "Python")
-print(new_string)  # 输出: hello Python
+
+print(new_string) # 输出: hello Python
 
 这个方法的基本用法是：`str.r ...
 
 ---
 
-### Q72: 2168. Python 在什么情况下会出现 KeyError、TypeError、ValueError？
+## Q72: 2168. Python 在什么情况下会出现 KeyError、TypeError、ValueError？
 
 **难度**: 中等  
 
@@ -1118,28 +1328,32 @@ KeyError：在使用字典时，如果尝试访问一个不存在的键，Python
 示例：
 
 ▼
+
 python
+
 复制代码
+
 my_dict = {'name': 'Alice', 'age': 25}
-print(my_dict['gender'])  # 试图访问不存在的键 'gender'
+
+print(my_dict['gender']) # 试图访问不存在的键 'gender'
 
 ...
 
 ---
 
-### Q73: 2169. 什么是 Python 中的模块和包？
+## Q73: 2169. 什么是 Python 中的模块和包？
 
 **难度**: 简单  
 
 模块就是一个 .py 文件，里面可以放函数、类、变量，还能有可执行代码。任何一个 Python 文件都可以当模块导入。
 
-包是一个包含多个模块的目录，用来把相关的模块组织在一起。传统上包目录里必须有 __init__.py 文件，Python 3.3 之后引入了命名空间包，没有 __init__.py 也能用，但一般还是建议加上。
+包是一个包含多个模块的目录，用来把相关的模块组织在一起。传统上包目录里必须有 **init**.py 文件，Python 3.3 之后引入了命名空间包，没有 **init**.py 也能用，但一般还是建议加上。
 
 简单说，模块是代码组织的最小单位，包是模块的容器。一个项目里可能有几十上百个模块，用包按功能分类管 ...
 
 ---
 
-### Q74: 2178. Python 是否支持多重继承？
+## Q74: 2178. Python 是否支持多重继承？
 
 **难度**: 简单  
 
@@ -1147,18 +1361,24 @@ print(my_dict['gender'])  # 试图访问不存在的键 'gender'
 
 扩展知识
 
-1）类的定义- 在Python中，你可以通过在类定义中列出多个父类来实现多重继承。举个例子：
+1）类的定义 - 在 Python 中，你可以通过在类定义中列出多个父类来实现多重继承。举个例子：
 
 ▼
+
 python
+
 复制代码
+
 class Parent1:
+
     def method1(self):
+    
         print("Parent1 method1")
 
 class Parent2:
+
     def method2(self):
+    
        ...
 
 ---
-

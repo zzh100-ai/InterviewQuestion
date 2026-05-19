@@ -1,37 +1,24 @@
 # Django 基础
 
->整理时间：2026-04-29 | 来源：知乎、CSDN、Stack Overflow、官方文档等
-
----
-
 ## 目录
-
-1. [MTV 架构](#q1-django-的-mtv-架构是什么和-mvc-有什么区别)
-2. [请求生命周期](#q2-django-的请求生命周期是怎样的)
-3. [中间件](#q3-django-中的中间件是什么执行顺序是怎样的)
-4. [项目目录结构](#q4-django-项目目录结构中各文件的作用)
-5. [settings.py 配置](#q5-django-中-settingspy-的常用配置有哪些)
-6. [ForeignKey on_delete](#q6-foreignkey-的-on_delete-参数有哪些选项)
-7. [class Meta](#q7-class-meta-在-django-model-中的作用)
-8. [自定义用户模型](#q8-django-中如何自定义用户模型)
 
 ---
 
 ### Q1: Django 的 MTV 架构是什么？和 MVC 有什么区别？
 
-![MTV 架构流程图](assets/01-django-mtv.png)
+**MVC 模式**（Model-View-Controller）是一种经典的软件设计模式，将应用分为三层：
 
-Django 采用 MTV（Model-Template-View）模式：
+* **Model**：处理数据逻辑与业务规则，如数据库操作。
+* **View**：负责界面展示，接收用户输入。
+* **Controller**：作为桥梁，接收用户请求、调用 Model 处理数据、选择 View 进行响应。
 
-* **Model（模型）**：负责数据层，处理数据库交互、数据验证
-* **Template（模板）**：负责表现层，定义 HTML 展示逻辑
-* **View（视图）**：负责业务逻辑层，接收请求、处理数据、返回响应
+**MVT 模式**（Model-View-Template）是 Django 等框架使用的变体，本质上与 MVC 类似，但分工略有不同：
 
-与 MVC 的对应关系：
+* **Model**：定义数据结构与数据库交互。
+* **View**：接收 HTTP 请求，调用 Model 处理业务逻辑，返回响应（相当于 MVC 中的 Controller）。
+* **Template**：负责呈现 HTML 内容（相当于 MVC 中的 View）。
 
-* Django 的 Model ≈ MVC 的 Model
-* Django 的 Template ≈ MVC 的 View
-* Django 的 View ≈ MVC 的 Controller
+**核心区别**：MVT 中 "View" 承担了控制器的职责，而 "Template" 专司展示；MVC 则明确将控制器独立出来处理流程控制。两者都是为了提高代码的解耦与可维护性。
 
 ### Q2: Django 的请求生命周期是怎样的？
 
@@ -121,3 +108,5 @@ AUTH_USER_MODEL = 'myapp.User'
 ```
 
 **注意**：必须在第一次迁移前设置 `AUTH_USER_MODEL`，否则会很麻烦。
+
+### Q9: 

@@ -8,77 +8,20 @@
         "type": "tabs",
         "children": [
           {
-            "id": "fc0bcd3cb00ae74e",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "python/django/01-Django 基础.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "01-Django 基础"
-            }
-          },
-          {
-            "id": "1047fd82af70a079",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "python/django/01-Django 基础.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "01-Django 基础"
-            }
-          },
-          {
-            "id": "38366e8a257a6d06",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "python/django/01-Django 基础.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "01-Django 基础"
-            }
-          },
-          {
-            "id": "6386b3c6d5fa16fe",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "python/django/01-Django 基础.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "01-Django 基础"
-            }
-          },
-          {
             "id": "1ab26849c1b14c92",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "python/django/01-Django 基础.md",
+                "file": "python/1. 语法.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "01-Django 基础"
+              "title": "1. 语法"
             }
           }
-        ],
-        "currentTab": 4
+        ]
       }
     ],
     "direction": "vertical"
@@ -213,13 +156,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "CLAUDE.md",
+                "file": "python/1. 语法.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "CLAUDE 的大纲"
+              "title": "1. 语法 的大纲"
             }
           },
           {
@@ -233,11 +176,12 @@
             }
           }
         ],
-        "currentTab": 5
+        "currentTab": 4
       }
     ],
     "direction": "horizontal",
-    "width": 474.5
+    "width": 474.5,
+    "collapsed": true
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -253,34 +197,36 @@
   },
   "active": "1ab26849c1b14c92",
   "lastOpenFiles": [
-    "python/01-Python 语言基础.md",
-    "python/django/03-视图与模板.md",
+    "python/并发/02-面试鸭并发补充.md",
+    "python/1. 语法.md",
+    "python/并发/01-并发与异步编程.md",
+    "python/标准库/01-面试鸭标准库题库.md",
+    "python/核心语法/04-面试鸭Python面向对象补充.md",
+    "python/核心语法/03-面试鸭Python基础题库.md",
+    "python/核心语法/02-面向对象编程.md",
+    "python/核心语法/01-Python 语言基础.md",
     "python/django/01-Django 基础.md",
-    "python/django/进阶与源码.md",
+    "python/django/04-中间件与信号.md",
     "python/django/09-进阶与源码.md",
     "python/django/08-安全.md",
+    "python/django/06-celery.md",
+    "python/django/05-drf.md",
+    "python/django/02-orm.md",
+    "python/01-Python 语言基础.md",
+    "python/django/03-视图与模板.md",
+    "python/django/进阶与源码.md",
     "python/django/07-缓存与性能优化.md",
-    "python/django/04-中间件与信号.md",
     "CLAUDE.md.tmp.13276.1777448813498",
     "python/django/安全.md",
-    "python/django/02-orm.md",
     "python/django/缓存与性能优化.md",
     "CLAUDE.md",
     "python/django/中间件与信号.md",
     "python/django/视图与模板.md",
     "python/django/Django 基础.md",
     "python/django/08-security.md",
-    "python/django/06-celery.md",
-    "python/django/04-middleware-signals.md",
-    "python/django/03-views-templates.md",
-    "python/django/01-basics.md",
-    "django-interview-notes.md",
     "CLAUDE.md.tmp.13276.1777448535269",
     "python/django/assets",
-    "python/django/09-advanced.md",
-    "python/django/05-drf.md",
     "python/django/05-drf.md.tmp.13276.1777448510360",
-    "python/django/07-cache-performance.md",
     "python/django",
     "python"
   ]
