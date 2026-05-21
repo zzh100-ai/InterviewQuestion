@@ -1,10 +1,4 @@
-# Django 基础
-
-## 目录
-
----
-
-### Q1: Django 的 MTV 架构是什么？和 MVC 有什么区别？
+### Django 的 MTV 架构是什么？和 MVC 有什么区别？
 
 **MVC 模式**（Model-View-Controller）是一种经典的软件设计模式，将应用分为三层：
 
@@ -20,7 +14,7 @@
 
 **核心区别**：MVT 中 "View" 承担了控制器的职责，而 "Template" 专司展示；MVC 则明确将控制器独立出来处理流程控制。两者都是为了提高代码的解耦与可维护性。
 
-### Q2: Django 的请求生命周期是怎样的？
+### Django 的请求生命周期是怎样的？
 
 ![Django 请求生命周期](assets/01-django-request-lifecycle.png)
 
@@ -32,13 +26,11 @@
 6. 经过中间件链的 `process_response`
 7. 返回 HTTP 响应给客户端
 
-### Q3: Django 中的中间件是什么？执行顺序是怎样的？
+### Django 中的中间件是什么？执行顺序是怎样的？
 
 中间件是 Django 的请求/响应处理钩子框架，用于全局修改请求或响应。
 
-![中间件执行流程](assets/01-django-middleware.png)
-
-执行顺序：请求从 MIDDLEWARE[0] 到 MIDDLEWARE[n] 依次处理，进入视图；响应则从 MIDDLEWARE[n] 到 MIDDLEWARE[0] 反向返回（洋葱模型）。
+执行顺序：请求从` MIDDLEWARE[0] `到 `MIDDLEWARE[n] `依次处理，进入视图；响应则从 `MIDDLEWARE[n] `到 `MIDDLEWARE[0] `反向返回（洋葱模型）。
 
 每个中间件可以定义的方法：
 
@@ -48,7 +40,7 @@
 * `process_template_response(request, response)` — 模板渲染后
 * `process_response(request, response)` — 响应阶段
 
-### Q4: Django 项目目录结构中各文件的作用？
+### Django 项目目录结构中各文件的作用？
 
 ![Django 项目目录结构](assets/01-django-project-structure.png)
 
@@ -66,7 +58,7 @@ MEDIA_URL = '/media/'             # 媒体文件 URL
 SECRET_KEY = '...'                # 密钥（生产环境务必保密）
 ```
 
-### Q6: `ForeignKey` 的 `on_delete` 参数有哪些选项？
+### `ForeignKey` 的 `on_delete` 参数有哪些选项？
 
 | 选项 | 说明 |
 |---|---|
@@ -77,7 +69,7 @@ SECRET_KEY = '...'                # 密钥（生产环境务必保密）
 | `SET()` | 设置为指定值或函数返回值 |
 | `DO_NOTHING` | 什么都不做（需自行保证数据完整性） |
 
-### Q7: `class Meta` 在 Django Model 中的作用？
+### `class Meta` 在 Django Model 中的作用？
 
 `class Meta` 定义模型的元数据，常用选项：
 
@@ -94,7 +86,7 @@ class Book(models.Model):
         permissions = [("can_publish", "Can publish book")]  # 权限
 ```
 
-### Q8: Django 中如何自定义用户模型？
+### Django 中如何自定义用户模型？
 
 ```python
 from django.contrib.auth.models import AbstractUser

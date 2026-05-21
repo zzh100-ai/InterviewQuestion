@@ -1,30 +1,10 @@
-# Django ORM 数据库
-
->整理时间：2026-04-29 | 来源：知乎、CSDN、Stack Overflow、官方文档等
-
----
-
-## 目录
-
-1. [select_related vs prefetch_related](#q1-django-orm-中-select_related-和-prefetch_related-的区别)
-2. [Q 对象和 F 对象](#q2-django-中-q-对象和-f-对象的作用)
-3. [事务](#q3-django-事务怎么用)
-4. [原生 SQL](#q4-django-中如何执行原生-sql)
-5. [N+1 查询问题](#q5-什么是-n1-查询问题如何解决)
-6. [模型继承](#q6-django-模型继承有哪几种方式)
-7. [only() 和 defer()](#q7-only-和-defer-的区别)
-
----
-
-### Q1: Django ORM 中 `select_related` 和 `prefetch_related` 的区别？
+### Django ORM 中 `select_related` 和 `prefetch_related` 的区别？
 
 | | `select_related` | `prefetch_related` |
 |---|---|---|
 | SQL 方式 | JOIN 查询（一条 SQL） | 额外查询 + Python 拼接 |
 | 适用关系 | ForeignKey / OneToOne | ManyToMany / 反向 ForeignKey |
 | 性能 | 减少 SQL 次数，但 JOIN 可能很大 | 两条 SQL，Python 层关联 |
-
-![N+1 查询问题与解决方案](assets/02-orm-n-plus-one.png)
 
 ```python
 # select_related：一条 SQL LEFT JOIN
@@ -34,7 +14,7 @@ books = Book.objects.select_related('author').all()
 books = Book.objects.prefetch_related('tags').all()
 ```
 
-### Q2: Django 中 `Q` 对象和 `F` 对象的作用？
+### Django 中 `Q` 对象和 `F` 对象的作用？
 
 **Q 对象**：构建复杂查询条件（OR、NOT）
 
@@ -54,7 +34,7 @@ from django.db.models import F
 Article.objects.filter(id=1).update(likes=F('likes') + 1)
 ```
 
-### Q3: Django 事务怎么用？
+### Django 事务怎么用？
 
 ```python
 from django.db import transaction
@@ -79,7 +59,7 @@ sid = transaction.savepoint()
 transaction.savepoint_rollback(sid)
 ```
 
-### Q4: Django 中如何执行原生 SQL？
+### Django 中如何执行原生 SQL？
 
 ```python
 from django.db import connection
@@ -93,23 +73,23 @@ with connection.cursor() as cursor:
 books = Book.objects.raw('SELECT * FROM book WHERE price > %s', [100])
 ```
 
-### Q5: 什么是 N+1 查询问题？如何解决？
+### 什么是 N+1 查询问题？如何解决？
 
 N+1 问题：查询 N 个对象时，每个对象又触发一次额外查询。
 
 ```python
-# ❌ N+1 问题
+# N+1 问题
 books = Book.objects.all()           # 1 条 SQL
 for book in books:
     print(book.author.name)          # N 条 SQL
 
-# ✅ 解决
+# 解决
 books = Book.objects.select_related('author').all()  # 1 条 SQL
 ```
 
 使用 `django-debug-toolbar` 或 `django-silk` 检测 N+1 问题。
 
-### Q6: Django 模型继承有哪几种方式？
+### Django 模型继承有哪几种方式？
 
 | 方式 | 说明 | DB 表 |
 |---|---|---|
@@ -131,7 +111,7 @@ class PublishedBook(Book):
         ordering = ['-published_at']
 ```
 
-### Q7: `only()` 和 `defer()` 的区别？
+### `only()` 和 `defer()` 的区别？
 
 * `only()`：只加载指定字段
 * `defer()`：延迟加载指定字段（其他字段立即加载）
