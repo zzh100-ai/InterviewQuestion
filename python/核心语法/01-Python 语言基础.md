@@ -1,3 +1,5 @@
+## 语言基础
+
 ### 什么是 Python？为什么它会这么流行？
 
 Python 是一门设计上很注重可读性的编程语言，代码写出来接近自然语言，缩进强制规范让结构清晰。这种简洁风格降低了入门门槛，初学者几天就能上手写脚本。
@@ -195,6 +197,8 @@ class User:
 ```
 
 真正想隐藏？压根不导出或者用闭包/描述符更靠谱。下划线只是沟通工具，不是安全机制。
+
+## 运算符
 
 ### Python 中 is 和 == 有什么区别？
 
@@ -604,6 +608,8 @@ d.get('b', 0)  # 安全访问，没找到返回 0
 
 **ValueError** 是类型对了，但值不合法。比如你调 `int('abc')`，字符串看着不像数字，转不了；或者 `json.loads('{'key')` 解析坏格式 JSON。还有像 `math.sqrt(-1)` 这种数学上不成立的操作，默认也会抛 ValueError。
 
+## 生成器
+
 ### 什么是生成器？生成器和迭代器的区别是什么？
 
 - 生成器：一种特殊的迭代器，使用`yield`关键字的函数或生成器表达式创建，惰性的产值，每次只会返回一个元素，并记住执行状态，下次继续
@@ -673,4 +679,203 @@ print(gen.send(10))     # 发送 10，total=10，输出 10
 print(gen.send(20))     # 发送 20，total=30，输出 30
 gen.close()             # 结束生成器
 ```
+
+## 装饰器？
+
+### 什么是装饰器？
+
+> 装饰器是一个**可调用对象**（函数或类），它接受一个函数作为参数，并返回一个新的函数（或可调用对象），在不修改原函数代码的前提下为其增加额外功能。
+
+### 什么是闭包？
+
+> 当一个函数定义在另一个函数内部，并且这个内部函数引用了外部函数的变量，即使外部函数已经执行完毕，这个内部函数依然能访问那些变量，这种现象和这个内部函数就称为闭包。
+
+### 实现一个计算函数执行前后时间的装饰器
+
+```python
+import time
+
+def timer(func):
+    def wrapepr(*args,**kwargs):
+        start=time.time()
+        result=func(*args,**kwargs)
+        end=time.time()
+        print(f"{func.__name__}运行时间为：{end-start}")
+        return result
+    return wrapepr
+
+@timer
+def sleep_func(seconds):
+    time.sleep(seconds)
+
+sleep_func(2)
+```
+
+### 实现带参数的装饰器
+
+```python
+import time
+
+
+def prefix_timer(prefix):
+    def decorator(func):
+        def wrapper(*args, **kwargs):
+            start = time.time()
+            result = (func(*args, **kwargs))
+            end = time.time()
+            print(f"{prefix} {func.__name__} took {end - start:.2f} seconds")
+            return result
+
+        return wrapper
+
+    return decorator
+
+
+@prefix_timer("one")
+def sleep_func(seconds):
+    time.sleep(seconds)
+
+
+sleep_func(2)
+```
+
+### **多个装饰器叠加时的执行顺序是怎样的？**
+
+```python
+def deco1(f):
+    def wrapper(*args, **kwargs):
+        print("deco1 start")
+        result = f(*args, **kwargs)
+        print("deco1 end")
+        return result
+    return wrapper
+
+def deco2(f):
+    def wrapper(*args, **kwargs):
+        print("deco2 start")
+        result = f(*args, **kwargs)
+        print("deco2 end")
+        return result
+    return wrapper
+
+@deco1
+@deco2
+def greet():
+    print("Hello!")
+
+greet()
+# 输出:
+# deco1 start
+# deco2 start
+# Hello!
+# deco2 end
+# deco1 end
+```
+
+### **装饰器会改变原函数的哪些元信息？如何修复？**
+
+```python
+from functools import wraps
+
+def logger(func):
+    @wraps(func)
+    def wrapper(*args, **kwargs):
+        """wrapper doc"""
+        print(f"Calling {func.__name__}")
+        return func(*args, **kwargs)
+    return wrapper
+
+@logger
+def add(a, b):
+    """Add two numbers"""
+    return a + b
+
+print(add.__name__)    # add  (而不是 wrapper)
+print(add.__doc__)     # Add two numbers
+```
+
+### **什么是类装饰器？与函数装饰器有何不同？**
+
+>类装饰器利用类的 `__init__` 接收函数，并在 `__call__` 方法中实现装饰逻辑。
+>优点：可以借助类实例属性保存状态，逻辑更清晰。
+
+```python
+class CountCalls:
+    def __init__(self,func):
+        self.count=0
+        self.func=func
+
+    def __call__(self, *args, **kwargs):
+        self.count+=1
+        print(f"第{self.count}次调用")
+        return self.func(*args, **kwargs)
+
+@CountCalls
+def func():
+    print("Hello!")
+
+func()
+func()
+"""
+第1次调用
+Hello!
+第2次调用
+Hello!
+"""
+```
+
+### **如何实现带参数的类装饰器？**
+
+```python
+from functools import wraps
+
+from torch.ao.quantization import fused_per_channel_wt_fake_quant_range_neg_127_to_127
+
+
+class PrintTimes:
+    def __init__(self,times):
+        self.times=times
+    def __call__(self, func):
+        @wraps(func)
+        def wrapper(*args,**kwargs):
+            for _ in range(self.times):
+                result=func(*args,**kwargs)
+            return result
+        return wrapper
+
+@PrintTimes(3)
+def func(name):
+    print(f"hello {name}")
+
+func("Alice")
+
+```
+
+### **如何用装饰器实现单例模式？**
+
+```python
+from functools import wraps
+
+def singleton(cls):
+    instances = {}
+    @wraps(cls)
+    def get_instance(*args, **kwargs):
+        if cls not in instances:
+            instances[cls] = cls(*args, **kwargs)
+        return instances[cls]
+    return get_instance
+
+@singleton
+class Database:
+    def __init__(self):
+        self.connection = "Connected"
+
+db1 = Database()
+db2 = Database()
+print(db1 is db2)   # True
+```
+
+
+
+
 
