@@ -1,19 +1,6 @@
-## 目录
-
-- [框架概述与选型](#框架概述与选型)
-- [路由与请求处理](#路由与请求处理)
-- [依赖注入](#依赖注入)
-- [数据验证与 Pydantic](#数据验证与-pydantic)
-- [异步与性能](#异步与性能)
-- [中间件与事件](#中间件与事件)
-- [认证与授权](#认证与授权)
-- [测试与部署](#测试与部署)
-
----
-
 ## 框架概述与选型
 
-### Q1: FastAPI 是什么？它的核心特点有哪些？
+### FastAPI 是什么？它的核心特点有哪些？
 
 FastAPI 是一个现代、高性能的 Python Web 框架，基于 Starlette（异步）和 Pydantic（数据验证）构建，专为构建 API 而设计。
 
@@ -43,7 +30,7 @@ async def create_item(item: Item):
     return {"name": item.name, "price": item.price}
 ```
 
-### Q2: FastAPI vs Django vs Flask 如何选型？
+### FastAPI vs Django vs Flask 如何选型？
 
 | 维度 | FastAPI | Django | Flask |
 |------|---------|--------|-------|
